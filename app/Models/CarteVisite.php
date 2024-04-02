@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CarteVisite extends Model
 {
     use HasFactory;
-    protected $fillable = ['nom', 'entreprise', 'titre', 'coordonnees'];
+    protected $fillable = ['user_id', 'nom','tel',  'entreprise', 'titre', 'coordonnees','description'];
+    protected $table = 'cartes_visites';
 
 }

@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('cartes_visites', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('nom');
+            $table->string('tel');
             $table->string('entreprise');
             $table->string('titre');
-            $table->json('coordonnees');
-            $table->json('autres_champs')->nullable();
+            $table->string('coordonnees');
+            $table->string('description');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('Users')->onDelete('cascade')->onUpdate('cascade');
         });
         
     }
