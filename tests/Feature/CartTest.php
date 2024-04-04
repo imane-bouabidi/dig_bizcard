@@ -36,7 +36,6 @@ class CartTest extends TestCase
 
         $response = $this->post('/api/cartes_visites', $carteData);
         $response->assertStatus(201);
-        // $response->assertJsonFragment(['message' => 'Carte de visite créée avec succès']);
     }
 
     public function testDestroy()
@@ -68,7 +67,6 @@ class CartTest extends TestCase
 
         $response = $this->post('/api/cartes-visites/'.$carte->id, $newCarteData);
         $response->assertStatus(200);
-        // $response->assertJsonFragment(['message' => 'Carte de visite mise à jour avec succès']);
     }
 
    
