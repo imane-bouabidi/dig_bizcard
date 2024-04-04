@@ -13,9 +13,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::apiResource('cartes-visites', CarteVisiteController::class);
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/index', [CarteVisiteController::class, 'index']);
-    Route::post('/cartes-visites', [CarteVisiteController::class, 'store']);
-    Route::put('/cartes-visites/{id}', [CarteVisiteController::class, 'update']);
+    Route::get('/index', [CarteVisiteController::class, 'index']);
+    Route::post('/cartes_visites', [CarteVisiteController::class, 'store']);
+    Route::post('/cartes-visites/{id}', [CarteVisiteController::class, 'update']);
     Route::delete('/cartes-visites/{id}', [CarteVisiteController::class, 'destroy']);
 });
 Route::post('/register', [AuthController::class, 'register']);

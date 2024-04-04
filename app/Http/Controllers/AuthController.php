@@ -39,7 +39,6 @@ class AuthController extends Controller
      *         description="Utilisateur enregistré avec succès",
      *         @OA\JsonContent(
      *             @OA\Property(property="message", type="string"),
-     *             @OA\Property(property="user", type="object", ref="#/components/schemas/User"),
      *         ),
      *     ),
      *     @OA\Response(
@@ -101,7 +100,6 @@ class AuthController extends Controller
      *         description="Utilisateur connecté avec succès",
      *         @OA\JsonContent(
      *             @OA\Property(property="message", type="string"),
-     *             @OA\Property(property="user", type="object", ref="#/components/schemas/User"),
      *             @OA\Property(property="token", type="string"),
      *         ),
      *     ),

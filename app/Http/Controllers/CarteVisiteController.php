@@ -19,15 +19,6 @@ use Illuminate\Support\Facades\Validator;
  *     @OA\Property(property="description", type="string", example="Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
  * )
  */
-/**
- * @OA\Schema(
- *     schema="User",
- *     required={"id", "name", "email"},
- *     @OA\Property(property="id", type="integer", example=1),
- *     @OA\Property(property="name", type="string", example="John Doe"),
- *     @OA\Property(property="email", type="string", format="email", example="john@example.com"),
- * )
- */
 class CarteVisiteController extends Controller
 {
 
@@ -50,7 +41,7 @@ class CarteVisiteController extends Controller
     public function index()
     {
         $cartes = CarteVisite::where('user_id',Auth::user()->id)->get();
-        return response()->json($cartes, 201);
+        return response()->json($cartes, 200);
     }
 
 /**
@@ -165,30 +156,36 @@ class CarteVisiteController extends Controller
     public function update(Request $request, $id)
     {
         $carteVisite = CarteVisite::findOrFail($id);
-
-        // $validator = Validator::make($request->all(), [
-        //     'nom' => 'string',
-        //     'tel' => 'string',
-        //     'entreprise' => 'string',
-        //     'titre' => 'string',
-        //     'coordonnees' => 'string',
-        //     'description' => 'string',
-        // ]);
-        // if ($validator->fails()) {
-        //     return response()->json(['errors' => $validator->errors()], 422);
-        // }
-        // $carteVisite->update($request->all());
-        // return response()->json($carteVisite, 200);
-        // try {
-        //     $carteVisite->update($request->all());
-        //     return $carteVisite;
-        // }catch (\Throwable $th) {
-        //     return response()->json(['error' => $th->getMessage()], 500);
-        // }
-        return $request->all();
-
-        // return response()->json($carteVisite, 200);
+    
+        $validator = Validator::make($request->all(), [
+            'nom' => 'string',
+            'tel' => 'string',
+            'entreprise' => 'string',
+            'titre' => 'string',
+            'coordonnees' => 'string',
+            'description' => 'string',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+    
+        try {
+            $carteVisite->update([
+                'nom' => $request->nom,
+                'tel' => $request->tel,
+                'entreprise' => $request->entreprise,
+                'titre' => $request->titre,
+                'coordonnees' => $request->coordonnees,
+                'description' => $request->description,
+            ]);
+    
+            return response()->json($carteVisite, 200);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 500);
+        }
     }
+    
 
 
     /**
